@@ -22,7 +22,7 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">Sports Health Monitoring</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
@@ -44,9 +44,7 @@
             <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno dodati <strong>osnovni opis ideje rešitve</strong> (kakšen je osnovni SCENARIJ UPORABE, KDO je ciljna publika, za kakšen NAMEN se aplikacija uporablja).</p><p class="text-muted">Opis naj ne bo daljši od 200 besed.</p>
-            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+            <p>Aplikacija Sports Health Monitoring je namenjena za podrobno pregledovanje športnikovih vitalnih znakov in poškodb. Na grafih se izrišejo različni vitalni znaki (telesna teža in temperatura, krvni tlak ter nasičenost krvi s kisikom), v tabelah pa so navedene pretekle in trenutne poškodbe. Poškodbe so prikazane tudi na koledarju, in sicer kdaj in kje so se zgodile ter koliko časa je trajalo okrevanje. Namenjena je za športne zdravnike, ki lahko z njeno pomočjo bolje spremljajo zdravje športnikov.</p>
           </div>
         </div>
         <div class="panel panel-default">
@@ -54,9 +52,9 @@
             <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije).</p>
-            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+
+            <p>Za zunanji vir sem uporabila Google Maps API (https://developers.google.com/maps/), s pomočjo katerega je v aplikaciji prikazano, kje se je zgodila določena poškodba izbranega športnika, z namenom boljše preglednosti in vodenja evidence.</p>
+
           </div>
         </div>
         <div class="panel panel-default">
@@ -64,9 +62,9 @@
             <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
-            <p><strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
-            <!-- KONEC: Master/detail načrtovalski vzorec -->
+
+            <p>Master/detail načrtovalski vzorec sem uporabila pri izpisu poškodb. Najprej so prikazane vse poškodbe za izbranega športnika (master), ob kliku na izbrano poškodbo pa se izpišejo tudi podrobnosti, in sicer datum nastanka poškodbe, predpisana terapija in predviden čas okrevanja oz. datum, ko je športnik popolnoma okreval (detail).</p>
+
           </div>
         </div>
         <div class="panel panel-default">
@@ -74,9 +72,9 @@
             <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>
-            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+
+            <p>Podatke sem vizualizirala s pomočjo JavaScript knjižnice plotly.js (https://plot.ly/javascript/). Uporabila sem črtni (line plot) in ploščinski (filled area plot) graf, saj na pregleden način prikažeta spreminjanje vitalnih znakov skozi čas.</p>
+
           </div>
         </div>
       </div>
