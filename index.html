@@ -4,17 +4,22 @@
   <meta charset="utf-8">
   <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+    <link href="knjiznice/css/style.css" rel="stylesheet">
   <style>
     body {padding-top: 70px;}
   </style>
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
-  <script src="knjiznice/js/koda.js"></script>
-</head>
-<body>
+    <script src="knjiznice/js/plotly-latest.min.js"></script>
+    <script src="knjiznice/js/koda.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg6UjK6Rvzl5bXtA99sNdMQ_nAm0gdKFQ&callback=initMap"></script>
 
-  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+</head>
+<body style="position:relative;">
+
+
+    <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
@@ -22,29 +27,115 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">Sports Health Monitoring</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
         <ul class="nav navbar-nav">
           <li><a href="opis.html">Opis ideje</a></li>
           <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
-          <li><a href="#">Generiranje podatkov</a></li>
+          <li><a href="#" onclick="generatorOnClick()">Generiranje podatkov</a></li>
         </ul>
       </div>
     </div>
-  </nav>
-  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+    </nav>
+    <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
 
-  <!-- ZAČETEK: Vsebina aplikacije -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p class="lead"><strong>TO-DO</strong>: Na tem mestu implementirajte vašo aplikacijo.</p>
-      </div>
+    <div id="gray_background" style="background-color: #F7F7F7; margin-top: -20px; height:100%; ">
+        <div class="container" style="padding-top: 30px;">
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="window">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="images/person.jpg" style="height: 172px; margin: 5px; margin-left: 15px;"/>
+                            </div>
+                            <div class="col-md-6" style="padding-left: 30px">
+                                <h4 id="name">Ime Priimek</h4>
+                                <p>Datum rojstva: <span id="dateOfBirth">N/A</span></p>
+                                <p>Starost: <span id="age">N/A</span></p>
+                                <p>Spol: <span id="sex">N/A</span></p>
+                                <p>Nacionalnost: <span id="nationality">N/A</span></p>
+                                <p>Višina: <span id="height">N/A</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="window" style="height: 209px; padding-left: 20px; padding-right: 20px;">
+                        <h4>Igralci:</h4>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Izberi igralca
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" id="playersDropdown">
+                                <li><a href="#" id="23854582-2cd1-4941-b26f-0a7cf118c242" onclick="selectPlayer(this)">Johnny Bravo</a></li>
+                                <li><a href="#" id="e31abb4d-93e1-40ab-aa5d-20bac2905957" onclick="selectPlayer(this)">Bronhilda Valkarievska</a></li>
+                                <li><a href="#" id="572d19d9-f874-4271-b312-97f3b0791b11" onclick="selectPlayer(this)">Bob Smith</a></li>
+                            </ul>
+                        </div>
+
+                        <input class="form-control" placeholder="EHR ID" id="ehrIdHolder" style="margin-top: 15px;">
+
+                        <button type="button" class="btn btn-primary" onclick="selectEhr()" style="margin-top: 15px;">Izberi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px">
+                <div class="col-md-5">
+                    <div class="window">
+                        <div id="weightPlot" >
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="window">
+                        <div id="bloodPressurePlot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px">
+                <div class="col-md-5">
+                    <div class="window">
+                        <div id="bodyTemparaturePlot" >
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="window">
+                        <div id="oxygenSaturationPlot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-10">
+                    <div class="window">
+                        <h4>Poškodbe:</h4>
+                        <div class="panel-group" id="injuriesList">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px; margin-bottom: 30px">
+                <div class="col-md-10">
+                    <div class="window">
+                        <h4>Lokacije poškodb:</h4>
+                        <div id="map" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
-  <!-- KONEC: Vsebina aplikacije -->
 
 </body>
 </html>
